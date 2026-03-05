@@ -8,7 +8,8 @@ const digitalTimeEl = document.querySelector("#digital-time");
 const digitalDateEl = document.querySelector("#digital-date");
 const themeButtons = document.querySelectorAll(".theme-btn");
 
-// The Theme
+/* ---------------- THEME SYSTEM ---------------- */
+
 const setTheme = (theme) => {
     body.dataset.theme = theme;
     localStorage.setItem("theme", theme);
@@ -24,7 +25,8 @@ themeButtons.forEach((btn) => {
     btn.addEventListener("click", () => setTheme(btn.dataset.theme));
 });
 
-// Dark Mode
+/* ---------------- DARK MODE ---------------- */
+
 if (localStorage.getItem("mode") === "dark") {
     body.classList.add("dark");
     modeswitch.textContent = "Light Mode";
@@ -37,8 +39,6 @@ const toggleDarkMode = () => {
 };
 
 modeswitch.addEventListener("click", toggleDarkMode);
-
-// To support the keyboard
 modeswitch.addEventListener("keydown", (e) => {
     if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
@@ -46,27 +46,30 @@ modeswitch.addEventListener("keydown", (e) => {
     }
 });
 
-// The analog hands and digital readout
-const updateTime = () => {
-    const date = new Date();
-    const seconds = date.getSeconds();
-    const minutes = date.getMinutes();
-    const hours = date.getHours() % 12;
+/* ---------------- SMOOTH CLOCK ENGINE ---------------- */
 
-    const secToDeg = (seconds / 60) * 360;
-    const minToDeg = ((minutes + seconds / 60) / 60) * 360;
-    const hrToDeg = ((hours + minutes / 60) / 12) * 360;
+function updateClock() {
+    const now = new Date();
 
-    secondhand.style.transform = `rotate(${secToDeg}deg)`;
-    minutehand.style.transform = `rotate(${minToDeg}deg)`;
-    hourhand.style.transform = `rotate(${hrToDeg}deg)`;
+    const milliseconds = now.getMilliseconds();
+    const seconds = now.getSeconds() + milliseconds / 1000;
+    const minutes = now.getMinutes() + seconds / 60;
+    const hours = (now.getHours() % 12) + minutes / 60;
+
+    const secDeg = (seconds / 60) * 360;
+    const minDeg = (minutes / 60) * 360;
+    const hrDeg = (hours / 12) * 360;
+
+    secondhand.style.transform = `rotate(${secDeg}deg)`;
+    minutehand.style.transform = `rotate(${minDeg}deg)`;
+    hourhand.style.transform = `rotate(${hrDeg}deg)`;
 
     if (digitalTimeEl) {
         digitalTimeEl.textContent = new Intl.DateTimeFormat(undefined, {
             hour: "2-digit",
             minute: "2-digit",
             second: "2-digit",
-        }).format(date);
+        }).format(now);
     }
 
     if (digitalDateEl) {
@@ -75,10 +78,10 @@ const updateTime = () => {
             year: "numeric",
             month: "short",
             day: "2-digit",
-        }).format(date);
+        }).format(now);
     }
-};
 
-// To start
-setInterval(updateTime, 1000);
-updateTime();
+    requestAnimationFrame(updateClock);
+}
+
+updateClock();

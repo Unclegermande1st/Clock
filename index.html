@@ -4,61 +4,68 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CLOCK itttttttttttt</title>
+
+    <meta name="author" content="Lt Gen Kiel">
+    <meta name="description" content="Responsive analog and digital clock with themes and dark mode.">
+
+    <title>Clock | Lt Gen Kiel</title>
+
     <link rel="stylesheet" href="style.css">
     <script src="main.js" defer></script>
 </head>
 
 <body>
-    <div class="container">
-        <!-- controls -->
+    <div class="app">
+
+        <!-- TOP BAR -->
         <header class="topbar">
             <div class="brand">
-                <div class="brand-name">Lt.GEN.Kiel</div>
-                <div class="brand-tag">Glock</div>
+                <h1 class="brand-name">Lt Gen Kiel</h1>
+                <span class="brand-tag"> Clock itttttttttttttttt </span>
             </div>
 
-            <!-- the digital readout -->
             <div class="readout" aria-label="Digital time and date">
                 <div class="readout_time" id="digital-time">--:--:--</div>
                 <div class="readout_date" id="digital-date">---</div>
             </div>
 
             <div class="controls">
-                <!-- themes -->
-                <div class="theme-switch" aria-label="color theme">
+                <div class="theme-switch" aria-label="Color theme">
                     <button class="theme-btn" data-theme="ocean" type="button">Ocean</button>
                     <button class="theme-btn" data-theme="sunset" type="button">Sunset</button>
                     <button class="theme-btn" data-theme="forest" type="button">Forest</button>
                 </div>
 
-                <!-- dark mode -->
-                <div class="mode-switch" role="button" tabindex="0">Dark Mode</div>
+                <div class="mode-switch" role="button" tabindex="0">
+                    Dark Mode
+                </div>
             </div>
         </header>
 
-        <!-- The clock face -->
-        <div class="clock">
-            <label style="--i: 1"><span>1</span></label>
-            <label style="--i: 2"><span>2</span></label>
-            <label style="--i: 3"><span>3</span></label>
-            <label style="--i: 4"><span>4</span></label>
-            <label style="--i: 5"><span>5</span></label>
-            <label style="--i: 6"><span>6</span></label>
-            <label style="--i: 7"><span>7</span></label>
-            <label style="--i: 8"><span>8</span></label>
-            <label style="--i: 9"><span>9</span></label>
-            <label style="--i: 10"><span>10</span></label>
-            <label style="--i: 11"><span>11</span></label>
-            <label style="--i: 12"><span>12</span></label>
+        <!-- CLOCK -->
+        <main class="main">
+            <div class="clock">
+                <label style="--i: 1"><span>1</span></label>
+                <label style="--i: 2"><span>2</span></label>
+                <label style="--i: 3"><span>3</span></label>
+                <label style="--i: 4"><span>4</span></label>
+                <label style="--i: 5"><span>5</span></label>
+                <label style="--i: 6"><span>6</span></label>
+                <label style="--i: 7"><span>7</span></label>
+                <label style="--i: 8"><span>8</span></label>
+                <label style="--i: 9"><span>9</span></label>
+                <label style="--i: 10"><span>10</span></label>
+                <label style="--i: 11"><span>11</span></label>
+                <label style="--i: 12"><span>12</span></label>
 
-            <!-- clock hands -->
-            <div class="indicator">
-                <span class="hand hour"></span>
-                <span class="hand minute"></span>
-                <span class="hand second"></span>
+                <div class="indicator">
+                    <span class="hand hour"></span>
+                    <span class="hand minute"></span>
+                    <span class="hand second"></span>
+                </div>
             </div>
-        </div>
+        </main>
+
     </div>
 </body>
 </html>
